@@ -2,10 +2,7 @@ import React, { useState } from "react";
 
 const ToDoList = () => {
   //setting our states
-  const [tasks, setTask] = useState([
-    "Touch Some Grass Mate!",
-    "Procasttinate whole day!",
-  ]);
+  const [tasks, setTask] = useState([]);
   const [newTask, setNewTask] = useState("");
   const [editable, setEditable] = useState(true);
 
