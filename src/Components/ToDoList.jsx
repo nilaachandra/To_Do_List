@@ -31,7 +31,13 @@ const ToDoList = () => {
   const toggleEditMode = (index) => {
     setEditable(!editable);
     const editButton = document.querySelector(".editButton");
-    editButton.innerHTML = "✅";
+
+    if(editable){
+        editButton.innerHTML = "✅";
+    } else {
+        editButton.innerHTML = "📝";
+    }
+    
     const updatedTasks = [...tasks];
     updatedTasks[index] = tasks[index];
     setTask(updatedTasks);
