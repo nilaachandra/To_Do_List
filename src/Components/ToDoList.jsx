@@ -7,7 +7,9 @@ const ToDoList = () => {
     "Procasttinate whole day!",
   ]);
   const [newTask, setNewTask] = useState("");
+  const [editable, setEditable] = useState(true);
 
+  //handling adding new tasks
   const handleInputChange = (event) => {
     setNewTask(event.target.value);
   };
@@ -17,32 +19,49 @@ const ToDoList = () => {
       setNewTask("");
     }
   };
-  const updateTask = (index) => {};
 
+  // Edit task
+  const updateTask = (index, updatedTask) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index] = updatedTask;
+    setTask(updatedTasks);
+  };
 
+  // Toggle edit mode for a specific task
+  const toggleEditMode = (index) => {
+    const updatedTasks = [...tasks];
+    updatedTasks[index] = tasks[index];
+    setTask(updatedTasks);
+  };
+
+  //delete task
   const removeTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i != index);
     setTask(updatedTasks);
   };
 
-
+  //move the task up
   const moveTaskUp = (index) => {
     if (index > 0) {
       const updatedTasks = [...tasks];
-        [updatedTasks[index], updatedTasks[index - 1]] = 
-        [updatedTasks[index - 1], updatedTasks[index]];
+      [updatedTasks[index], updatedTasks[index - 1]] = [
+        updatedTasks[index - 1],
+        updatedTasks[index],
+      ];
       setTask(updatedTasks);
     }
   };
 
-
+  //move the task down
   const moveTaskDown = (index) => {
     if (index < tasks.length - 1) {
-        const updatedTasks = [...tasks];
-          [updatedTasks[index], updatedTasks[index + 1]] = 
-          [updatedTasks[index + 1], updatedTasks[index]];
-        setTask(updatedTasks);
-      }
+      const updatedTasks = [...tasks];
+      [updatedTasks[index], updatedTasks[index + 1]] = [
+        updatedTasks[index + 1],
+        updatedTasks[index],
+      ];
+      setTask(updatedTasks);
+    }
   };
 
   return (
@@ -69,7 +88,12 @@ const ToDoList = () => {
         <div className="todoAdder flex flex-col py-2 w-full lg:px-80 md:px-40 px-4 gap-2">
           {tasks.map((task, index) => (
             <div key={index} className="flex gap-2 w-full justify-around">
-              <input type="text" value={task} className="" />
+              <input
+                type="text"
+                value={tasks[index]} 
+                readOnly={!editable}
+                onChange={(e) => updateTask(index, e.target.value)} 
+                onClick={() => toggleEditMode(index)}/>
               <button className="text-xl" onClick={() => updateTask(index)}>
                 📝
               </button>
