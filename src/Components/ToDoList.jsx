@@ -30,14 +30,15 @@ const ToDoList = () => {
   // Toggle edit mode for a specific task
   const toggleEditMode = (index) => {
     setEditable(!editable);
-    const editButton = document.querySelector(".editButton");
-
-    if(editable){
-        editButton.innerHTML = "✅";
-    } else {
-        editButton.innerHTML = "📝";
-    }
-    
+//     const editButton = document.querySelectorAll(".editButton");
+//      const newButtons = [editButton];
+//     newButtons.forEach((button, i) => {
+//         if(editable){
+//             button.innerHTML = "✅";
+//         } else {
+//             button.innerHTML = "📝";
+//         }
+// }
     const updatedTasks = [...tasks];
     updatedTasks[index] = tasks[index];
     setTask(updatedTasks);
@@ -99,7 +100,7 @@ const ToDoList = () => {
             <div key={index} className="flex gap-2 w-full justify-around">
               <input
                 type="text"
-                value={tasks[index]}
+                value={task}
                 readOnly={editable}
                 onChange={(e) => updateTheTask(index, e.target.value)}
               />
