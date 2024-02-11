@@ -21,7 +21,7 @@ const ToDoList = () => {
   };
 
   // Edit task
-  const updateTask = (index, updatedTask) => {
+  const updateTheTask = (index, updatedTask) => {
     const updatedTasks = [...tasks];
     updatedTasks[index] = updatedTask;
     setTask(updatedTasks);
@@ -29,6 +29,9 @@ const ToDoList = () => {
 
   // Toggle edit mode for a specific task
   const toggleEditMode = (index) => {
+    setEditable(!editable);
+    const editButton = document.querySelector(".editButton");
+    editButton.innerHTML = "✅";
     const updatedTasks = [...tasks];
     updatedTasks[index] = tasks[index];
     setTask(updatedTasks);
@@ -90,11 +93,14 @@ const ToDoList = () => {
             <div key={index} className="flex gap-2 w-full justify-around">
               <input
                 type="text"
-                value={tasks[index]} 
-                readOnly={!editable}
-                onChange={(e) => updateTask(index, e.target.value)} 
-                onClick={() => toggleEditMode(index)}/>
-              <button className="text-xl" onClick={() => updateTask(index)}>
+                value={tasks[index]}
+                readOnly={editable}
+                onChange={(e) => updateTheTask(index, e.target.value)}
+              />
+              <button
+                className="text-xl editButton"
+                onClick={() => toggleEditMode(index)}
+              >
                 📝
               </button>
               <button className="text-xl" onClick={() => removeTask(index)}>
