@@ -18,12 +18,32 @@ const ToDoList = () => {
     }
   };
   const updateTask = (index) => {};
+
+
   const removeTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i != index);
     setTask(updatedTasks);
   };
-  const moveTaskUp = (index) => {};
-  const moveTaskdown = (index) => {};
+
+
+  const moveTaskUp = (index) => {
+    if (index > 0) {
+      const updatedTasks = [...tasks];
+        [updatedTasks[index], updatedTasks[index - 1]] = 
+        [updatedTasks[index - 1], updatedTasks[index]];
+      setTask(updatedTasks);
+    }
+  };
+
+
+  const moveTaskDown = (index) => {
+    if (index < tasks.length - 1) {
+        const updatedTasks = [...tasks];
+          [updatedTasks[index], updatedTasks[index + 1]] = 
+          [updatedTasks[index + 1], updatedTasks[index]];
+        setTask(updatedTasks);
+      }
+  };
 
   return (
     <div className="p-6 w-full">
@@ -59,7 +79,7 @@ const ToDoList = () => {
               <button className="text-xl" onClick={() => moveTaskUp(index)}>
                 ⬆️
               </button>
-              <button className="text-xl" onClick={() => moveTaskdown(index)}>
+              <button className="text-xl" onClick={() => moveTaskDown(index)}>
                 ⬇️
               </button>
             </div>
