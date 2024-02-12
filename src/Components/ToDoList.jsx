@@ -27,15 +27,15 @@ const ToDoList = () => {
   // Toggle edit mode for a specific task
   const toggleEditMode = (index) => {
     setEditable(!editable);
-//     const editButton = document.querySelectorAll(".editButton");
-//      const newButtons = [editButton];
-//     newButtons.forEach((button, i) => {
-//         if(editable){
-//             button.innerHTML = "✅";
-//         } else {
-//             button.innerHTML = "📝";
-//         }
-// }
+    //     const editButton = document.querySelectorAll(".editButton");
+    //      const newButtons = [editButton];
+    //     newButtons.forEach((button, i) => {
+    //         if(editable){
+    //             button.innerHTML = "✅";
+    //         } else {
+    //             button.innerHTML = "📝";
+    //         }
+    // }
     const updatedTasks = [...tasks];
     updatedTasks[index] = tasks[index];
     setTask(updatedTasks);
@@ -120,6 +120,7 @@ const ToDoList = () => {
           ))}
         </div>
       </div>
+
     </div>
   );
 };
